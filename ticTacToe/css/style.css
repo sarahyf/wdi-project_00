@@ -1,0 +1,13 @@
+.board {
+    width: 500px;
+    height: 500px;
+    border: 5px solid black;
+    margin: 0px auto;
+}
+
+.cells {
+    width: 150px;
+    height: 150px;
+    border: 5px solid black;
+    display: inline-block;
+}
