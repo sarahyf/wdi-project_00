@@ -23,17 +23,29 @@ $(document).ready(function () {
                         temp = "o";
                         if (ticTacToe[keys].result[indexes].xo === "") {
                             ticTacToe[keys].result[indexes].xo = "O";
-                            ticTacToe[keys].matching += "O";
                             $("#" + $id).text("O");
-                            console.log(ticTacToe[keys].matching);
+                            for (var keys in ticTacToe) {
+                                for (var indexes in ticTacToe[keys].result) {
+                                    if (ticTacToe[keys].result[indexes].id === $id) {
+                                        ticTacToe[keys].matching += "O";
+                                        console.log(ticTacToe[keys].matching);
+                                    }
+                                }
+                            }
                         }
                     } else if ($("#" + $id).text() === "" && temp === "o") {
                         temp = "x";
                         if (ticTacToe[keys].result[indexes].xo === "") {
                             ticTacToe[keys].result[indexes].xo = "X";
-                            ticTacToe[keys].matching += "X";
                             $("#" + $id).text("X");
-                            console.log(ticTacToe[keys].matching);
+                            for (var keys in ticTacToe) {
+                                for (var indexes in ticTacToe[keys].result) {
+                                    if (ticTacToe[keys].result[indexes].id === $id) {
+                                        ticTacToe[keys].matching += "X";
+                                        console.log(ticTacToe[keys].matching);
+                                    }
+                                }
+                            }
                         }
                     }
                     if (ticTacToe[keys].matching === "XXX" || ticTacToe[keys].matching === "OOO") {
