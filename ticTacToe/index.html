@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </head>
+
 <body>
+    <h1>Tic Tac Toe</h1>
+    <div class="players">
+        <label for="player1">Player 1: <input type="text" id="player1"></label>
+        <select name="xo" id="xo1">
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <br>
+        <label for="player2">Player 2: <input type="text" id="player2"></label>
+        <select name="xo" id="xo2">
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <br>
+        <button id="start">Start</button>
+    </div>
+
     <div class="board">
         <div class="cells" id="cell1"></div>
         <div class="cells" id="cell2"></div>
@@ -24,4 +42,5 @@
         <div class="cells" id="cell9"></div>
     </div>
 </body>
+
 </html>

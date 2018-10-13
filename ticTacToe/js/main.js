@@ -10,7 +10,23 @@ $(document).ready(function () {
         8: { result: [{ id: "cell3", xo: "" }, { id: "cell5", xo: "" }, { id: "cell7", xo: "" }], matching: "" }
     };
 
-    var temp = "x";
+    var $xoChoice = "";
+    $(".board").hide();
+    $("#start").click(function () {
+        var $player1 = $("#player1").val();
+        $xoChoice = $("#xo1").val();
+
+        var $player2 = $("#player2").val();
+        var $xo2 = $("#xo2").val();
+
+        console.log($player1);
+        console.log($xoChoice);
+
+        console.log($player2);
+        console.log($xo2);
+        $(".players").remove();
+        $(".board").show();
+    });
 
     $(document).click(function (event) {
         var $id = event.target.id;
@@ -19,34 +35,36 @@ $(document).ready(function () {
             loop2: for (var indexes in ticTacToe[keys].result) {
                 if (ticTacToe[keys].result[indexes].id === $id) {
                     console.log($id);
-                    if ($("#" + $id).text() === "" && temp === "x") {
-                        temp = "o";
+                    if ($("#" + $id).text() === "" && $xoChoice === "X") {
                         if (ticTacToe[keys].result[indexes].xo === "") {
-                            ticTacToe[keys].result[indexes].xo = "O";
-                            $("#" + $id).text("O");
-                            for (var keys in ticTacToe) {
-                                for (var indexes in ticTacToe[keys].result) {
-                                    if (ticTacToe[keys].result[indexes].id === $id) {
-                                        ticTacToe[keys].matching += "O";
-                                        console.log(ticTacToe[keys].matching);
+                            $("#" + $id).text($xoChoice);
+                            for (var keys2 in ticTacToe) {
+                                for (var indexes2 in ticTacToe[keys2].result) {
+                                    if (ticTacToe[keys2].result[indexes2].id === $id) {
+                                        ticTacToe[keys2].result[indexes2].xo = $xoChoice;
+                                        ticTacToe[keys2].matching += $xoChoice;
+                                        console.log(ticTacToe[keys2].result[indexes2].xo);
+                                        console.log(ticTacToe[keys2].matching);
                                     }
                                 }
                             }
                         }
-                    } else if ($("#" + $id).text() === "" && temp === "o") {
-                        temp = "x";
+                        $xoChoice = "O";
+                    } else if ($("#" + $id).text() === "" && $xoChoice === "O") {
                         if (ticTacToe[keys].result[indexes].xo === "") {
-                            ticTacToe[keys].result[indexes].xo = "X";
-                            $("#" + $id).text("X");
-                            for (var keys in ticTacToe) {
-                                for (var indexes in ticTacToe[keys].result) {
-                                    if (ticTacToe[keys].result[indexes].id === $id) {
-                                        ticTacToe[keys].matching += "X";
-                                        console.log(ticTacToe[keys].matching);
+                            $("#" + $id).text($xoChoice);
+                            for (var keys2 in ticTacToe) {
+                                for (var indexes2 in ticTacToe[keys2].result) {
+                                    if (ticTacToe[keys2].result[indexes2].id === $id) {
+                                        ticTacToe[keys2].result[indexes2].xo = $xoChoice;
+                                        ticTacToe[keys2].matching += $xoChoice;
+                                        console.log(ticTacToe[keys2].result[indexes2].xo);
+                                        console.log(ticTacToe[keys2].matching);
                                     }
                                 }
                             }
                         }
+                        $xoChoice = "X";
                     }
                     if (ticTacToe[keys].matching === "XXX" || ticTacToe[keys].matching === "OOO") {
                         $(document).off("click");

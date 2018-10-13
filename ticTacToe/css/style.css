@@ -1,7 +1,24 @@
-.board {
+body {
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0px auto;
+    background-color: pink;
+    padding: 50px 0px;
+}
+
+.players {
     width: 500px;
     height: 500px;
     border: 5px solid black;
+    margin: 50px auto;
+}
+
+.board {
+    width: 500px;
+    height: 500px;
     margin: 0px auto;
 }
 
