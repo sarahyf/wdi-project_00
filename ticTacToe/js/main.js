@@ -11,25 +11,37 @@ $(document).ready(function () {
     };
 
     var $xoChoice = "";
-    $(".board").hide();
+    var $player1 = "";
+    var $player2 = "";
+    var $playersNames = "";
+    var $counter = 0;
+
+    $("#board").hide();
+    $(".result").hide();
+
     $("#start").click(function () {
-        var $player1 = $("#player1").val();
+        $player1 = $("#player1").val();
         $xoChoice = $("#xo1").val();
 
-        var $player2 = $("#player2").val();
+        $player2 = $("#player2").val();
         var $xo2 = $("#xo2").val();
 
         console.log($player1);
         console.log($xoChoice);
-
         console.log($player2);
         console.log($xo2);
-        $(".players").remove();
-        $(".board").show();
+
+        if ($xoChoice !== "" && $player1 !== "" && $player2 !== "") {
+            $(".players").hide();
+            $("#board").fadeToggle(1000);
+        } else {
+            alert("Please enter your names");
+        }
     });
 
     $(document).click(function (event) {
         var $id = event.target.id;
+        $playersNames = $player1 === $playersNames || "" ? $player2 : $player1;
 
         loop1: for (var keys in ticTacToe) {
             loop2: for (var indexes in ticTacToe[keys].result) {
@@ -38,6 +50,7 @@ $(document).ready(function () {
                     if ($("#" + $id).text() === "" && $xoChoice === "X") {
                         if (ticTacToe[keys].result[indexes].xo === "") {
                             $("#" + $id).text($xoChoice);
+                            $("#" + $id).css("color", "navy");
                             for (var keys2 in ticTacToe) {
                                 for (var indexes2 in ticTacToe[keys2].result) {
                                     if (ticTacToe[keys2].result[indexes2].id === $id) {
@@ -50,9 +63,11 @@ $(document).ready(function () {
                             }
                         }
                         $xoChoice = "O";
+                        $counter++;
                     } else if ($("#" + $id).text() === "" && $xoChoice === "O") {
                         if (ticTacToe[keys].result[indexes].xo === "") {
                             $("#" + $id).text($xoChoice);
+                            $("#" + $id).css("color", "darkred");
                             for (var keys2 in ticTacToe) {
                                 for (var indexes2 in ticTacToe[keys2].result) {
                                     if (ticTacToe[keys2].result[indexes2].id === $id) {
@@ -65,14 +80,25 @@ $(document).ready(function () {
                             }
                         }
                         $xoChoice = "X";
+                        $counter++;
                     }
                     if (ticTacToe[keys].matching === "XXX" || ticTacToe[keys].matching === "OOO") {
+                        $counter = 0;
                         $(document).off("click");
                         console.log("STOP");
+                        $("#board").hide();
+                        $(".result").show();
+                        $(".result").text("Congratulations " + ($playersNames === $player1 ? $player2 : $player1));
                         break loop1;
                     }
                 }
             }
+        }
+        if ($counter === 9) {
+            console.log("STOP");
+            $("#board").hide();
+            $(".result").show();
+            $(".result").text("TIE");
         }
     });
 });

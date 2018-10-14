@@ -1,30 +1,111 @@
 body {
     margin: 0px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0px;
+    border-bottom: 5px solid goldenrod;
 }
 
 h1 {
     text-align: center;
+    margin: 0px;
+    font-size: 70px;
+    color: darkred;
+}
+
+.container {
     margin: 0px auto;
-    background-color: pink;
-    padding: 50px 0px;
+    text-align: center;
+    font-size: 30px;
 }
 
-.players {
-    width: 500px;
-    height: 500px;
-    border: 5px solid black;
-    margin: 50px auto;
+.first {
+    padding-top: 100px;
+    color: navy;
 }
 
-.board {
-    width: 500px;
-    height: 500px;
+.second {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    color: darkred;
+}
+
+input[type=text] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 100px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+}
+
+.size {
+    width: 70px;
+    height: 50px;
+    font-size: 15px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+#start {
     margin: 0px auto;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    background-color: navy;
+    color: goldenrod;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
 }
 
-.cells {
+#start:hover {
+    background-color: darkred;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 100px auto;
+    font-size: 100px;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer; 
     width: 150px;
     height: 150px;
-    border: 5px solid black;
-    display: inline-block;
+}
+
+.vert {
+    border-left: 2px solid goldenrod;
+    border-right: 2px solid goldenrod;
+}
+
+.hori {
+    border-top: 2px solid goldenrod;
+    border-bottom: 2px solid goldenrod;
+}
+
+.turn {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+ .result {
+    text-align: center;
+    margin: 0px;
+    padding: 200px 0px;
+    font-size: 50px;
+    color: navy;
 }
