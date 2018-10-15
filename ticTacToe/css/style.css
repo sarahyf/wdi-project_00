@@ -1,7 +1,6 @@
 body {
     margin: 0px;
-    background-color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Caveat Brush', cursive;
 }
 
 header {
@@ -13,14 +12,14 @@ header {
 h1 {
     text-align: center;
     margin: 0px;
-    font-size: 70px;
+    font-size: 100px;
     color: darkred;
 }
 
 .container {
     margin: 0px auto;
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
 }
 
 .first {
@@ -38,24 +37,31 @@ input[type=text] {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 100px;
-    margin: 8px 0;
     box-sizing: border-box;
     border-radius: 10px;
     outline: none;
     font-size: 20px;
 }
 
-.size {
+select {
     width: 70px;
     height: 50px;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 10px;
     outline: none;
     cursor: pointer;
+    font-family: 'Caveat Brush', cursive;
+}
+
+#xo1 {
+    color: navy;
+}
+
+#xo2 {
+    color: darkred;
 }
 
 #start {
-    margin: 0px auto;
     width: 200px;
     height: 50px;
     text-align: center;
@@ -65,6 +71,7 @@ input[type=text] {
     border-radius: 10px;
     outline: none;
     cursor: pointer;
+    font-family: 'Caveat Brush', cursive;
 }
 
 #start:hover {
@@ -76,6 +83,7 @@ table {
     border-spacing: 0;
     margin: 100px auto;
     font-size: 100px;
+    font-family: 'Caveat Brush', cursive;
 }
 
 td {
@@ -96,16 +104,9 @@ td {
     border-bottom: 2px solid goldenrod;
 }
 
-.turn {
+.result {
     text-align: center;
-    font-size: 30px;
-    padding-top: 20px;
-}
-
- .result {
-    text-align: center;
-    margin: 0px;
     padding: 200px 0px;
-    font-size: 50px;
+    font-size: 70px;
     color: navy;
 }

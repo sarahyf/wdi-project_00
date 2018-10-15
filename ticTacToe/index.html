@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
@@ -24,7 +25,7 @@
 
             <div class="first">
                 <label for="player1">Player 1: <input type="text" id="player1"></label>
-                <select name="xo" id="xo1" class="size">
+                <select name="xo" id="xo1">
                     <option value="X" selected="selected">X</option>
                     <option value="O">O</option>
                 </select>
@@ -32,12 +33,13 @@
 
             <div class="second">
                 <label for="player2">Player 2: <input type="text" id="player2"></label>
-                <select name="xo" id="xo2" class="size">
+                <select name="xo" id="xo2">
                     <option value="X">X</option>
                     <option value="O" selected="selected">O</option>
                 </select>
                 <br>
             </div>
+
             <button id="start">Start</button>
 
         </div>
@@ -61,6 +63,7 @@
         </table>
 
         <div class="result"></div>
+
     </div>
 </body>
 
