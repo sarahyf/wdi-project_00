@@ -15,10 +15,14 @@ $(document).ready(function () {
   var $player2 = "";
   var $playersNames = "";
   var $xoChoice = "";
+  var $xo1 = "";
+  var $xo2 = "";
   var $counter = 0;
+  var js = false;
 
   $(".container").hide();
   $(".container").slideToggle(1234);
+  $(".players").hide();
   $("#board").hide();
   $(".result").hide();
 
@@ -39,13 +43,89 @@ $(document).ready(function () {
     $counter++;
   }
 
+  function jsTurn() {
+    var count= 0;
+    var check = true;
+    var match = $xo2 + $xo2;
+
+    while (check === true) {
+      count++;
+      for (var keys in ticTacToe) {
+        if (ticTacToe[keys].matching.length === 2) {
+          if (ticTacToe[keys].matching === match) {
+            for (var indexes in ticTacToe[keys].result) {
+              if ($("#" + ticTacToe[keys].result[indexes]).text() === "") {
+                game(ticTacToe[keys].result[indexes]);
+                result($xo2);
+                check = false;
+                return;
+              }
+
+            }
+          }
+        }
+      }
+      if (count === 2)
+        check = false;
+      match = $xo1 + $xo1;
+    }
+    check = true;
+
+    while (check === true) {
+      var random = "cell" + (Math.floor(Math.random() * 8) + 1);
+      if ($("#" + random).text() === "") {
+        game(random);
+        result($xo2);
+        check = false;
+      }
+    }
+  }
+
+  function result(recentValue) {
+    loop1: for (var keys in ticTacToe) {
+      if (ticTacToe[keys].matching === recentValue + recentValue + recentValue) {
+        $counter = 0;
+        $(document).off("click");
+        console.log("STOP");
+        $("#board").hide();
+        $(".result").slideDown();
+        $(".result").text(
+          "Congratulations " +
+          ($playersNames === $player1 ? $player2 : $player1)
+        );
+        break loop1;
+      }
+    }
+    // check for the tie
+    if ($counter === 9) {
+      console.log("TIE");
+      $("#board").hide();
+      $(".result").slideDown();
+      $(".result").text("TIE");
+    }
+  }
+
+  $("#friend").click(function () {
+    $(".players").slideToggle(1234);
+    $(".main").hide();
+  });
+
+  $("#js").click(function () {
+    $(".players").slideToggle(1234);
+    $(".main").hide();
+    $(".second").hide();
+    js = true;
+  });
+
   // when the start button clicked
   $("#start").click(function () {
     $player1 = $("#player1").val();
+    $xo1 = $("#xo1").val();
     $xoChoice = $("#xo1").val();
 
-    $player2 = $("#player2").val();
-    var $xo2 = $("#xo2").val();
+    $player2 = js === true ? "JS" : $("#player2").val();
+
+    $xo2 = $xoChoice === "X" ? "O" : "X";
 
     // to make sure the users entered their names
     if ($xoChoice !== "" && $player1 !== "" && $player2 !== "") {
@@ -55,7 +135,7 @@ $(document).ready(function () {
       $(".players").hide();
       $("#board").fadeToggle(1000);
     } else {
-      alert("Please enter your names");
+      swal("Please enter your names");
     }
   });
 
@@ -63,38 +143,24 @@ $(document).ready(function () {
     // to get the id of the clicked element
     var $id = event.target.id;
 
-    loop1: for (var keys in ticTacToe) {
-      loop2: for (var indexes in ticTacToe[keys].result) {
+    for (var keys in ticTacToe) {
+      for (var indexes in ticTacToe[keys].result) {
         if (ticTacToe[keys].result[indexes] === $id) {
           console.log($id);
           if ($("#" + $id).text() === "") {
             game($id);
+
+            if (js === true) {
+              setTimeout(() => {
+                jsTurn();
+              }, 1000);
+            }
           }
           // check for the winner
-          if (
-            ticTacToe[keys].matching === "XXX" ||
-            ticTacToe[keys].matching === "OOO"
-          ) {
-            $counter = 0;
-            $(document).off("click");
-            console.log("STOP");
-            $("#board").hide();
-            $(".result").slideDown();
-            $(".result").text(
-              "Congratulations " +
-              ($playersNames === $player1 ? $player2 : $player1)
-            );
-            break loop1;
-          }
+          result($xo1);
+          result($xo2);
         }
       }
-    }
-    // check for the tie
-    if ($counter === 9) {
-      console.log("TIE");
-      $("#board").hide();
-      $(".result").slideDown();
-      $(".result").text("TIE");
     }
   });
 });

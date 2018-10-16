@@ -8,18 +8,25 @@
     <title>Tic Tac Toe</title>
     <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </head>
 
 <body>
-    
+
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
 
     <div class="container">
+
+        <div class="main">
+            <h4>What do you want to play with?</h4>
+            <button id="js" class="buttons">JS</button>
+            <button id="friend" class="buttons">Friend</button>
+        </div>
 
         <div class="players">
 
@@ -40,7 +47,7 @@
                 <br>
             </div>
 
-            <button id="start">Start</button>
+            <button id="start" class="buttons">Start</button>
 
         </div>
 

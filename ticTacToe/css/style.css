@@ -61,7 +61,7 @@ select {
     color: darkred;
 }
 
-#start {
+.buttons {
     width: 200px;
     height: 50px;
     text-align: center;
@@ -74,7 +74,7 @@ select {
     font-family: 'Caveat Brush', cursive;
 }
 
-#start:hover {
+.buttons:hover {
     background-color: darkred;
 }
 
