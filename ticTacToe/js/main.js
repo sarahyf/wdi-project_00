@@ -26,6 +26,7 @@ $(document).ready(function () {
   $("#board").hide();
   $(".result").hide();
 
+  // this function is to display either X or O
   function game(id) {
     $("#" + id).text($xoChoice);
     $("#" + id).css("color", $xoChoice === "X" ? "navy" : "darkred");
@@ -33,6 +34,7 @@ $(document).ready(function () {
     for (var keys in ticTacToe) {
       for (var indexes in ticTacToe[keys].result) {
         if (ticTacToe[keys].result[indexes] === id) {
+          console.log(ticTacToe[keys].result[indexes]);
           ticTacToe[keys].matching += $xoChoice;
           console.log(ticTacToe[keys].matching);
         }
@@ -43,11 +45,13 @@ $(document).ready(function () {
     $counter++;
   }
 
+  // this function works when the player plays with JS
   function jsTurn() {
-    var count= 0;
+    var count = 0;
     var check = true;
     var match = $xo2 + $xo2;
 
+    // check if JS can win or play in place that prevent the player to win
     while (check === true) {
       count++;
       for (var keys in ticTacToe) {
@@ -60,7 +64,6 @@ $(document).ready(function () {
                 check = false;
                 return;
               }
-
             }
           }
         }
@@ -69,8 +72,9 @@ $(document).ready(function () {
         check = false;
       match = $xo1 + $xo1;
     }
-    check = true;
 
+    check = true;
+    // if neither the player nor JS has a chance to win
     while (check === true) {
       var random = "cell" + (Math.floor(Math.random() * 8) + 1);
       if ($("#" + random).text() === "") {
@@ -81,6 +85,7 @@ $(document).ready(function () {
     }
   }
 
+  // this function is to display the result
   function result(recentValue) {
     loop1: for (var keys in ticTacToe) {
       if (ticTacToe[keys].matching === recentValue + recentValue + recentValue) {
@@ -89,27 +94,29 @@ $(document).ready(function () {
         console.log("STOP");
         $("#board").hide();
         $(".result").slideDown();
-        $(".result").text(
-          "Congratulations " +
-          ($playersNames === $player1 ? $player2 : $player1)
-        );
-        break loop1;
+        $(".result").text(($playersNames === $player1 ? $player2 : $player1) + " win");
+        return true;
       }
     }
     // check for the tie
     if ($counter === 9) {
+      $(document).off("click");
       console.log("TIE");
       $("#board").hide();
       $(".result").slideDown();
       $(".result").text("TIE");
+      return true;
     }
+    return false;
   }
 
+  // when the player wants to play with his/her friend
   $("#friend").click(function () {
     $(".players").slideToggle(1234);
     $(".main").hide();
   });
 
+  // when the player wants to play with JS
   $("#js").click(function () {
     $(".players").slideToggle(1234);
     $(".main").hide();
@@ -123,7 +130,7 @@ $(document).ready(function () {
     $xo1 = $("#xo1").val();
     $xoChoice = $("#xo1").val();
 
-    $player2 = js === true ? "JS" : $("#player2").val();
+    $player2 = js === true ? "Computer" : $("#player2").val();
 
     $xo2 = $xoChoice === "X" ? "O" : "X";
 
@@ -143,12 +150,16 @@ $(document).ready(function () {
     // to get the id of the clicked element
     var $id = event.target.id;
 
-    for (var keys in ticTacToe) {
+    loop1: for (var keys in ticTacToe) {
       for (var indexes in ticTacToe[keys].result) {
         if (ticTacToe[keys].result[indexes] === $id) {
-          console.log($id);
           if ($("#" + $id).text() === "") {
             game($id);
+
+            // check for the winner
+            if (result($xo1) === true) {
+              break loop1;
+            }
 
             if (js === true) {
               setTimeout(() => {
@@ -156,9 +167,12 @@ $(document).ready(function () {
               }, 1000);
             }
           }
-          // check for the winner
-          result($xo1);
-          result($xo2);
+          if (js === false) {
+             // check for the winner
+            if (result($xo2) === true) {
+              break loop1;
+            }
+          }
         }
       }
     }
