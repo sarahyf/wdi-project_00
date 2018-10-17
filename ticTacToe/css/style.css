@@ -110,3 +110,15 @@ td {
     font-size: 70px;
     color: navy;
 }
+
+.swal-button {
+    color: goldenrod;
+    background-color: navy;
+}
+.swal-button:hover {
+    background-color: darkred;
+}
+
+.swal-text {
+    font-size: 25px;
+}

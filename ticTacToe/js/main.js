@@ -18,7 +18,7 @@ $(document).ready(function () {
   var $xo1 = "";
   var $xo2 = "";
   var $counter = 0;
-  var js = false;
+  var computer = false;
 
   $(".container").hide();
   $(".container").slideToggle(1234);
@@ -45,36 +45,39 @@ $(document).ready(function () {
     $counter++;
   }
 
-  // this function works when the player plays with JS
-  function jsTurn() {
+  // this function works when the player plays with the computer
+  function computerTurn() {
     var count = 0;
     var check = true;
     var match = $xo2 + $xo2;
-
-    // check if JS can win or play in place that prevent the player to win
+    // check if computer can win or play in a place that prevent the player to win
     while (check === true) {
       count++;
       for (var keys in ticTacToe) {
-        if (ticTacToe[keys].matching.length === 2) {
-          if (ticTacToe[keys].matching === match) {
-            for (var indexes in ticTacToe[keys].result) {
-              if ($("#" + ticTacToe[keys].result[indexes]).text() === "") {
-                game(ticTacToe[keys].result[indexes]);
-                result($xo2);
-                check = false;
-                return;
-              }
+        if (ticTacToe[keys].matching === match) {
+          for (var indexes in ticTacToe[keys].result) {
+            if ($("#" + ticTacToe[keys].result[indexes]).text() === "") {
+              game(ticTacToe[keys].result[indexes]);
+              result($xo2);
+              check = false;
+              return;
             }
           }
         }
       }
-      if (count === 2)
+      if (count === 1) {
+        match = $xo1 + $xo1;
+      }
+      else if (count === 2) {
+        match = $xo2;
+      }
+      else if (count === 3) {
         check = false;
-      match = $xo1 + $xo1;
+      }
     }
 
     check = true;
-    // if neither the player nor JS has a chance to win
+    // if neither the player nor computer has a chance to win
     while (check === true) {
       var random = "cell" + (Math.floor(Math.random() * 8) + 1);
       if ($("#" + random).text() === "") {
@@ -87,14 +90,14 @@ $(document).ready(function () {
 
   // this function is to display the result
   function result(recentValue) {
-    loop1: for (var keys in ticTacToe) {
+    for (var keys in ticTacToe) {
       if (ticTacToe[keys].matching === recentValue + recentValue + recentValue) {
         $counter = 0;
         $(document).off("click");
         console.log("STOP");
         $("#board").hide();
         $(".result").slideDown();
-        $(".result").text(($playersNames === $player1 ? $player2 : $player1) + " win");
+        $(".result").text(($playersNames === $player1 ? $player2 : $player1) + " won");
         return true;
       }
     }
@@ -116,12 +119,12 @@ $(document).ready(function () {
     $(".main").hide();
   });
 
-  // when the player wants to play with JS
-  $("#js").click(function () {
+  // when the player wants to play with computer
+  $("#computer").click(function () {
     $(".players").slideToggle(1234);
     $(".main").hide();
     $(".second").hide();
-    js = true;
+    computer = true;
   });
 
   // when the start button clicked
@@ -130,7 +133,7 @@ $(document).ready(function () {
     $xo1 = $("#xo1").val();
     $xoChoice = $("#xo1").val();
 
-    $player2 = js === true ? "Computer" : $("#player2").val();
+    $player2 = computer === true ? "Computer" : $("#player2").val();
 
     $xo2 = $xoChoice === "X" ? "O" : "X";
 
@@ -156,19 +159,19 @@ $(document).ready(function () {
           if ($("#" + $id).text() === "") {
             game($id);
 
-            // check for the winner
+            // check if player 1 could win
             if (result($xo1) === true) {
               break loop1;
             }
 
-            if (js === true) {
+            if (computer === true) {
               setTimeout(() => {
-                jsTurn();
+                computerTurn();
               }, 1000);
             }
           }
-          if (js === false) {
-             // check for the winner
+          if (computer === false) {
+            // check if player 2 could win
             if (result($xo2) === true) {
               break loop1;
             }
