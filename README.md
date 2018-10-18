@@ -11,7 +11,7 @@ This project was done with different technologies:
 3. Start coding
 
 ## The project link:
-(until deployment)
+https://sarahyf.github.io/wdi-project_00/
 
 ## Unsolved Problems:
 If I have more time I would add more levels to the game depending on the board size and a score that determine the winner. However, this could be the next stage of the game.
