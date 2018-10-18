@@ -2,6 +2,7 @@
 
 ## The Used Technologies:
 This project was done with different technologies:
+* HTML for the structure
 * CSS for the design
 * JavaScript and jQuery for the implementation
 
