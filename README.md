@@ -18,10 +18,10 @@ If I have more time I would add more levels to the game depending on the board s
 
 ## Credits:
 Thanks to:
-* GitHub
-* W3Schools
-* JQuery
-* Stack Overflow
-* Code Pen
-* Google Fonts
-* SweetAlert
+* [GitHub](https://github.com/)
+* [W3Schools](https://www.w3schools.com/)
+* [JQuery](https://jquery.com/)
+* [Stack Overflow](https://stackoverflow.com/)
+* [Code Pen](https://codepen.io/xunnn/pen/yEmMbm)
+* [Google Fonts](https://fonts.google.com/)
+* [SweetAlert](https://sweetalert.js.org/)
